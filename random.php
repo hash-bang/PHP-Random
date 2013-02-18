@@ -11,6 +11,23 @@ class Random {
 	}
 
 	/**
+	* Return a hash of methods and human friendly names
+	* @param bool $filter Return only available methods rather than all methods (which may not actually work)
+	* @return array Hash of available methods and their names
+	*/
+	function GetMethods($filter = TRUE) {
+		$methods = array();
+		foreach (array(
+			'rand' => 'Rand() Built-in',
+			'mt_rand' => 'Mersenne Twister (fast)',
+			'openssl' => 'OpenSSL random pseudo',
+		) as $key => $text)
+			if (!$filter || $this->IsAvailable($key))
+				$methods[$key] = $text;
+		return $methods;
+	}
+
+	/**
 	* Set the default method to use when calling Rand()
 	* @param string $method The mettod Rand() should use if none is explicitly specified
 	* @see Rand()

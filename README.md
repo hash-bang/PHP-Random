@@ -8,6 +8,9 @@ Various handy PHP random number generation functions all in one class.
 	// Figure out what is the best method to use given a list
 	echo $r->GetPrefered(array('openssl', 'mt_rand', 'rand'));
 
+	// Get a list of which methods are available (keys are methods, values are human readble descriptions)
+	$methods = $r->GetMethods();
+
 	// Is the OpenSSL method available?
 	echo $r->IsAvailable('openssl');
 
